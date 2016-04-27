@@ -10,6 +10,7 @@
 		045E3AAE1CC8C62E0007FA6B /* CommonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E3AAD1CC8C62E0007FA6B /* CommonState.swift */; };
 		0496BC731CC8666200E63EF4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0496BC721CC8666200E63EF4 /* LoginViewController.swift */; };
 		0496BC751CC8668D00E63EF4 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0496BC741CC8668D00E63EF4 /* LoginVM.swift */; };
+		04A7561C1CD055E800D7B8B7 /* PersonVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7561B1CD055E800D7B8B7 /* PersonVM.swift */; };
 		04E9DC151CBB8A0100AF44FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DC141CBB8A0100AF44FF /* AppDelegate.swift */; };
 		04E9DC171CBB8A0100AF44FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DC161CBB8A0100AF44FF /* ViewController.swift */; };
 		04E9DC1C1CBB8A0100AF44FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E9DC1B1CBB8A0100AF44FF /* Assets.xcassets */; };
@@ -250,7 +251,7 @@
 		04E9DE2A1CBB9DBA00AF44FF /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD3B1CBB9DBA00AF44FF /* PersonInfoViewController.swift */; };
 		04E9DE2B1CBB9DBA00AF44FF /* TabBarViewControlelr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD3D1CBB9DBA00AF44FF /* TabBarViewControlelr.swift */; };
 		04E9DE2C1CBB9DBA00AF44FF /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD411CBB9DBA00AF44FF /* BaseVM.swift */; };
-		04E9DE2D1CBB9DBA00AF44FF /* HotMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD421CBB9DBA00AF44FF /* HotMV.swift */; };
+		04E9DE2D1CBB9DBA00AF44FF /* HotVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD421CBB9DBA00AF44FF /* HotVM.swift */; };
 		5BC75E5D6FEB8464FB9CF59B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1000ADFDB11E46D26F360B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -276,6 +277,7 @@
 		045E3AAD1CC8C62E0007FA6B /* CommonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonState.swift; sourceTree = "<group>"; };
 		0496BC721CC8666200E63EF4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0496BC741CC8668D00E63EF4 /* LoginVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		04A7561B1CD055E800D7B8B7 /* PersonVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonVM.swift; path = BaseVM/PersonVM.swift; sourceTree = "<group>"; };
 		04E9DC111CBB8A0100AF44FF /* RxSwift_MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwift_MVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E9DC141CBB8A0100AF44FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04E9DC161CBB8A0100AF44FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -522,7 +524,7 @@
 		04E9DD3B1CBB9DBA00AF44FF /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 		04E9DD3D1CBB9DBA00AF44FF /* TabBarViewControlelr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewControlelr.swift; sourceTree = "<group>"; };
 		04E9DD411CBB9DBA00AF44FF /* BaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
-		04E9DD421CBB9DBA00AF44FF /* HotMV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotMV.swift; sourceTree = "<group>"; };
+		04E9DD421CBB9DBA00AF44FF /* HotVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotVM.swift; sourceTree = "<group>"; };
 		0A1000ADFDB11E46D26F360B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D840E525A7D492F646F7D24 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DCC6E40C847692AE07239A73 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1016,7 +1018,8 @@
 			isa = PBXGroup;
 			children = (
 				04E9DD401CBB9DBA00AF44FF /* BaseVM */,
-				04E9DD421CBB9DBA00AF44FF /* HotMV.swift */,
+				04E9DD421CBB9DBA00AF44FF /* HotVM.swift */,
+				04A7561B1CD055E800D7B8B7 /* PersonVM.swift */,
 			);
 			path = BallDynamicVM;
 			sourceTree = "<group>";
@@ -1441,7 +1444,7 @@
 				0496BC751CC8668D00E63EF4 /* LoginVM.swift in Sources */,
 				04E9DE2A1CBB9DBA00AF44FF /* PersonInfoViewController.swift in Sources */,
 				04E9DE291CBB9DBA00AF44FF /* LeagueTableViewCell.swift in Sources */,
-				04E9DE2D1CBB9DBA00AF44FF /* HotMV.swift in Sources */,
+				04E9DE2D1CBB9DBA00AF44FF /* HotVM.swift in Sources */,
 				04E9DE1A1CBB9DBA00AF44FF /* CBAViewController.swift in Sources */,
 				04E9DE1C1CBB9DBA00AF44FF /* FolkViewController.swift in Sources */,
 				04E9DE2C1CBB9DBA00AF44FF /* BaseVM.swift in Sources */,
@@ -1465,6 +1468,7 @@
 				04E9DC151CBB8A0100AF44FF /* AppDelegate.swift in Sources */,
 				04E9DE211CBB9DBA00AF44FF /* HotTableViewCell.swift in Sources */,
 				04E9DE171CBB9DBA00AF44FF /* HttpPostRequest.swift in Sources */,
+				04A7561C1CD055E800D7B8B7 /* PersonVM.swift in Sources */,
 				04E9DE251CBB9DBA00AF44FF /* LeagueInSchoolViewController.swift in Sources */,
 				04E9DE1B1CBB9DBA00AF44FF /* EquipmentViewController.swift in Sources */,
 			);

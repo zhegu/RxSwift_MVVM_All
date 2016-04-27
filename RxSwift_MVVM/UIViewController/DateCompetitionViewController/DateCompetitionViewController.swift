@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AnimatedSegmentSwitch
 class DateCompetitionViewController: BaseViewController {
 
     override func viewDidLoad() {

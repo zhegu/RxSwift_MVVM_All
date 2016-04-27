@@ -17,3 +17,4 @@ let StrAccountFormat    = "账号格式错误"
 let StrPasswordNotNull  = "密码不能为空"
 let StrPasswordNum      = "密码是6-18位"
 
+typealias RxViewModelHot = [HotModel]
