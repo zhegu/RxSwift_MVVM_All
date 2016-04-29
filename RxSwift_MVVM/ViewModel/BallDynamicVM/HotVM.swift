@@ -12,7 +12,7 @@ import RxAlamofire
 import RxSwift
 import SwiftyJSON
 
-class HotMV: BaseVM {
+class HotVM: BaseVM {
     let disposeBage = DisposeBag()
     
     let url = "http://120.76.130.252:10086/dongtai/recommend&cells&1234567"
@@ -20,14 +20,16 @@ class HotMV: BaseVM {
     let urlAddress = "http://120.76.130.252:10086/dongtai/cells/recommend"
     
     var modelArray:[HotModel] = Array()
+    var testmodeArray:[HotModel] = Array()
     var requestCount:Int = 0
     var isLastDataFromNet:Bool = false
     let limit:Int = 20
     
     var rxModelArray:Observable<RxViewModelHot>?
+//    var rxModelArray:Observable<HotModel>?
 //    var page : Variable<Int> = Variable(0)
     override init() {
-        rxModelArray =  Observable<RxViewModelHot>.just(modelArray)
+        rxModelArray =  .just(testmodeArray)
         super.init()
     }
     
@@ -91,34 +93,5 @@ class HotMV: BaseVM {
 //                RxAlamofireError
             }) .addDisposableTo(disposeBage)
     }
-    /*
-    {
-    Alamofire.request(.GET, urlLast, parameters: nil).validate().responseString{ (response) -> Void in
     
-    if response.result.isSuccess == true {
-    if let result = response.result.value {
-    let par = JSON.parse(result)
-    print("res: \(par)")
-    //                    let datas = result.dataUsingEncoding(NSUTF8StringEncoding)!
-    //                    JSON(data: datas)
-    if let m = par.arrayObject{
-    if m.count < self.limit {
-    self.isLastDataFromNet = true
-    }
-    for data in m  {
-    if let hot:HotModel  = HotModel(dic: data as? NSDictionary) {
-    self.modelArray.append(hot)
-    }
-    }
-    self.myTableView.reloadData()
-    }
-    }
-    } else {
-    print(response.result.error)
-    }
-    self.myTableView.mj_header.endRefreshing()
-    }
-
-    }
-   */
 }

@@ -9,7 +9,9 @@ pod 'Kanna', '~> 1.0.4'
 pod 'NJKWebViewProgress'
 pod 'RxAlamofire'
 
-pod 'RxCocoa',    '~> 2.0'
-pod 'RxBlocking', '~> 2.0'
-#pod 'RxTests',    '~> 2.0'
+pod 'RxCocoa', '~> 2.4'
+pod 'RxBlocking', '~> 2.4'
+pod 'RxSwift', '~> 2.4'
+pod 'RxDataSources', '~> 0.7'
+
 use_frameworks!
