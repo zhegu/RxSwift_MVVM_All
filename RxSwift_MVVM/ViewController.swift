@@ -166,6 +166,7 @@ class ViewController: UIViewController {
             subScription.subscribe({ (event) in
                 print(event)
             })
+            value = "world"
         }
         //deferred不是第一步创建Observable，而是在subscriber的时候创建的
         example("deferred") { 

@@ -9,37 +9,37 @@
 import UIKit
 import RxDataSources
 
-public struct SectionModel<Section, ItemType>
-    : SectionModelType
-, CustomStringConvertible {
-    public typealias Identity = Section
-    public typealias Item = ItemType
-    public var model: Section
-    
-    public var identity: Section {
-        return model
-    }
-    
-    public var items: [Item]
-    
-    public init(model: Section, items: [Item]) {
-        self.model = model
-        self.items = items
-    }
-    
-    public var description: String {
-        return "\(self.model) > \(items)"
-    }
-}
+//public struct SectionModel<Section, ItemType>
+//    : SectionModelType
+//, CustomStringConvertible {
+//    public typealias Identity = Section
+//    public typealias Item = ItemType
+//    public var model: Section
+//    
+//    public var identity: Section {
+//        return model
+//    }
+//    
+//    public var items: [Item]
+//    
+//    public init(model: Section, items: [Item]) {
+//        self.model = model
+//        self.items = items
+//    }
+//    
+//    public var description: String {
+//        return "\(self.model) > \(items)"
+//    }
+//}
+//
+//extension SectionModel {
+//    public init(original: SectionModel<Section, Item>, items: [Item]) {
+//        self.model = original.model
+//        self.items = original.items
+//    }
+//}
 
-extension SectionModel {
-    public init(original: SectionModel<Section, Item>, items: [Item]) {
-        self.model = original.model
-        self.items = original.items
-    }
-}
-
-class HotModel:NSObject,SectionModelType {
+class HotModel:NSObject {
     var image_address:String?
     var image_content:String?
     var ticket:String?
@@ -47,10 +47,10 @@ class HotModel:NSObject,SectionModelType {
     
 //    public var items: [Item]
     
-    public init(model: Section, items: [Item]) {
-        self.model = model
-        self.items = items
-    }
+//    public init(model: Section, items: [Item]) {
+//        self.model = model
+//        self.items = items
+//    }
     
     init (dic:NSDictionary?) {
         if let myDic = dic {

@@ -18,26 +18,21 @@ import RxDataSources
 
 class HotViewController: BaseViewController,UITableViewDelegate {
     let myTableView:UITableView = UITableView(frame: CGRectMake(0, 0, Swift_SCR_W, Swift_SCR_H-NAVIGATION_HEIGHT - SEGMENT_HEIGHT * 2))
-    var myImage:UIImage? = UIImage(named: "照片")
-//    let url = "http://115.159.101.179:10086/dongtai/recommend&cells&1234567"
-    let url = "http://120.76.130.252:10086/dongtai/recommend&cells&1234567"
-    
-    let urlAddress = "http://120.76.130.252:10086/dongtai/cells/recommend"
-    
-    var modelArray:[HotModel] = Array()
-    var requestCount:Int = 0
-    var isLastDataFromNet:Bool = false
-    let limit:Int = 20
-    
     let hotVM = HotVM()
     
-    let disposeBag                                  = DisposeBag()
-    var rxHotModelSource: Variable<HotModel?>   = Variable(nil)
+    let disposeBag = DisposeBag()
     
-    var rxModelArray:Observable<RxViewModelHot>?
+    let reuseIdentifier = "\(HotTableViewCell.self)"
+    
+    let myImage:UIImage? = UIImage(named: "照片")
+
+   
     //MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
+        initRefresh()
+        initTableView()
+        hotVM.httpGetRequset(LoadDataByType.loadNew)
 
     }
 
@@ -58,46 +53,72 @@ class HotViewController: BaseViewController,UITableViewDelegate {
         view.backgroundColor = UIColor(white: 1, alpha: 1)
         myTableView.rowHeight = Swift_Height_Cell_ListAndHistory
         myTableView.separatorStyle = UITableViewCellSeparatorStyle.None
-   let testBtn = UIButton(frame: CGRectMake(300,20,40,40))
-    testBtn.setTitle("add", forState: .Normal)
-        testBtn.backgroundColor = UIColor.redColor()
-        testBtn.addTarget(self, action: #selector(HotViewController.addModel), forControlEvents: .TouchUpInside)
-        view.addSubview(testBtn)
-        let reloadDataSource = RxTableViewSectionedReloadDataSource<HotModel>()
+        let reloadDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String,HotModel>>()
         myTableView.rx_setDelegate(self)
         .addDisposableTo(disposeBag)
         
         
+        myTableView.registerClass(HotTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        
-        
-        
-        
-        hotVM.rxModelArray!.subscribeNext { (hot) in
-            print(hot)
+        reloadDataSource.configureCell = {
+            _, tableView, indexPath, hotModel in
+            let cell = tableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as! HotTableViewCell
+            cell.tag = indexPath.row
+            cell.settingData(hotModel.ticket, image: nil)
+            cell.viewImage?.sd_setImageWithURL(NSURL(string: hotModel.image_address!), placeholderImage: UIImage(named: "照片"), completed: { (imageDownload, httpError, SDImageCacheTypeMemory, httpUrl) -> Void in
+                
+                if httpError != nil {
+                    print("httpError:\(httpError)")
+                 
+                }
+            })
+            
+            
+            
+            return cell
         }
         
-        hotVM.rxModelArray!
-            .bindTo(myTableView.rx_itemsWithCellIdentifier("pasteCell", cellType: UITableViewCell.self)) { (row, element, cell) in
-                
-                print("row \(row)")
-                print("element \(element)")
-                print("cell \(cell)")
-//                switch element {
-//                case .Text(let string):
-//                    cell.textLabel?.text = String(string)
-//                case .Image(let image):
-//                    cell.imageView?.image = image
-//                }
-            }
-                .addDisposableTo(disposeBag)
-        
-        return
+        hotVM.getHotModels().bindTo(myTableView.rx_itemsWithDataSource(reloadDataSource))
+        .addDisposableTo(disposeBag)
 
     }
+    
+    
+    func initRefresh() -> Void {
+        //设置下拉刷新，上拉加载
+        myTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:#selector(HotViewController.loadNewData))
+        myTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(HotViewController.loadMoreData))
+        hotVM.refreshTag.subscribeNext { [unowned self](endRefresh) in
+            if endRefresh == true {
+                if self.myTableView.mj_header.isRefreshing() {
+                    self.myTableView.mj_header.endRefreshing()
+                }
+                if self.myTableView.mj_footer.isRefreshing() {
+                    self.myTableView.mj_footer.endRefreshing()
+                }
+            }
+        }.addDisposableTo(disposeBag)
+        
+        //        myTableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+       
+    }
    
+    func loadNewData()->Void {
+        hotVM.httpGetRequset(.loadNew)
+        
+    }
+    
+    func loadMoreData()->Void {
+        if (!hotVM.isLastDataFromNet) {
+            hotVM.httpGetRequset(.loadMore)
+        } else {
+            self.myTableView.mj_footer.endRefreshingWithNoMoreData()
+        }
+        
+    }
     
     func addModel() -> Void {
+        
         print("press btn")
     }
 }

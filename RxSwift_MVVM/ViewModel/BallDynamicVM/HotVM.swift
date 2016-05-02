@@ -11,6 +11,7 @@ import Alamofire
 import RxAlamofire
 import RxSwift
 import SwiftyJSON
+import RxDataSources
 
 class HotVM: BaseVM {
     let disposeBage = DisposeBag()
@@ -20,24 +21,20 @@ class HotVM: BaseVM {
     let urlAddress = "http://120.76.130.252:10086/dongtai/cells/recommend"
     
     var modelArray:[HotModel] = Array()
-    var testmodeArray:[HotModel] = Array()
+    
     var requestCount:Int = 0
     var isLastDataFromNet:Bool = false
-    let limit:Int = 20
+    let limit:Int = 2
+    var obs = PublishSubject<[SectionModel<String, HotModel>]>()
+    var section:[SectionModel<String, HotModel>]?
     
-    var rxModelArray:Observable<RxViewModelHot>?
-//    var rxModelArray:Observable<HotModel>?
-//    var page : Variable<Int> = Variable(0)
+    var refreshTag = PublishSubject<Bool>()
+    
     override init() {
-        rxModelArray =  .just(testmodeArray)
+
         super.init()
     }
     
-    func legalAccount(account: String) -> Observable<RxViewModelHot> {
-        // 如果用户名为空
-        return Observable<RxViewModelHot>.just(modelArray)
-        
-    }
     
     func httpGetRequset(type:LoadDataByType)->Void {
         
@@ -76,22 +73,44 @@ class HotVM: BaseVM {
                     if array.count < self.limit {
                         self.isLastDataFromNet = true
                     }
-
+                    
+                    if type == .loadNew {
+                        self.modelArray.removeAll()
+                    }
+                    
                     for data in array {
                         if let hot:HotModel  = HotModel(dic: data as? NSDictionary) {
                             self.modelArray.append(hot)
                         }
                     }
+                    self.stopRefreshAnimation()
+                    self.refreshData()
                     
                 }
             }, onError: { (error)->Void in
                 print("error:\(error)")
-                
-//                 self.displayError(e as? RxAlamofireError)
-                //Error(error as ErrorType)
-                
-//                RxAlamofireError
+
             }) .addDisposableTo(disposeBage)
     }
     
+    func getHotModels() -> Observable<[SectionModel<String, HotModel>]> {
+        
+
+        section = [SectionModel(model: "", items: self.modelArray)]
+        return obs
+        
+    }
+    
+    func getRefreshTag() -> Observable<Bool> {
+        return refreshTag
+    }
+    
+    func refreshData() -> Void {
+        section = [SectionModel(model: "", items: self.modelArray)]
+        obs.onNext(section!)
+    }
+    
+    func stopRefreshAnimation() -> Void {
+        refreshTag.onNext(true)
+    }
 }

@@ -51,10 +51,10 @@ class PersonInfoViewController: BaseViewController,UITableViewDelegate,UITableVi
         view.backgroundColor = UIColor(white: 1, alpha: 1)
         
         //设置下拉刷新，上拉加载
-        myTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"loadNewData")
+        myTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:#selector(PersonInfoViewController.loadNewData))
         
         //        myTableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
-        myTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
+        myTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(PersonInfoViewController.loadMoreData))
     }
     //http:// 120.76.130.252:10086/dongtai/cells/module&flag&num&ticket
     //MARK: - HttpRequest
@@ -135,11 +135,6 @@ class PersonInfoViewController: BaseViewController,UITableViewDelegate,UITableVi
         myCell?.viewImage?.sd_setImageWithURL(NSURL(string: hot.image_address!), placeholderImage: UIImage(named: "照片"), completed: { (imageDownload, httpError, SDImageCacheTypeMemory, httpUrl) -> Void in
             if httpError != nil {
                 print("\(indexPath.row): \(imageDownload)")
-                if (imageDownload == nil) {
-                    myCell?.viewImage?.image = self.myImage
-                } else {
-                    myCell?.viewImage?.image = imageDownload
-                }
             }
         })
         return  myCell!

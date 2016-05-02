@@ -253,6 +253,10 @@
 		04E9DE2C1CBB9DBA00AF44FF /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD411CBB9DBA00AF44FF /* BaseVM.swift */; };
 		04E9DE2D1CBB9DBA00AF44FF /* HotVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9DD421CBB9DBA00AF44FF /* HotVM.swift */; };
 		5BC75E5D6FEB8464FB9CF59B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1000ADFDB11E46D26F360B /* Pods.framework */; };
+		ADF983B51CD5F85500AA0399 /* RxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF983B11CD5F85500AA0399 /* RxTableViewController.swift */; };
+		ADF983B61CD5F85500AA0399 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF983B21CD5F85500AA0399 /* TableViewCell.swift */; };
+		ADF983B71CD5F85500AA0399 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF983B31CD5F85500AA0399 /* User.swift */; };
+		ADF983B81CD5F85500AA0399 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF983B41CD5F85500AA0399 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -527,6 +531,10 @@
 		04E9DD421CBB9DBA00AF44FF /* HotVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotVM.swift; sourceTree = "<group>"; };
 		0A1000ADFDB11E46D26F360B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D840E525A7D492F646F7D24 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		ADF983B11CD5F85500AA0399 /* RxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxTableViewController.swift; sourceTree = "<group>"; };
+		ADF983B21CD5F85500AA0399 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		ADF983B31CD5F85500AA0399 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ADF983B41CD5F85500AA0399 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		DCC6E40C847692AE07239A73 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -909,6 +917,7 @@
 		04E9DD211CBB9DBA00AF44FF /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ADF983B01CD5F85500AA0399 /* test */,
 				0496BC711CC865E900E63EF4 /* LoginViewController */,
 				04E9DD221CBB9DBA00AF44FF /* BallDynamicViewController */,
 				04E9DD2F1CBB9DBA00AF44FF /* BaseVIewController */,
@@ -1047,6 +1056,17 @@
 				0A1000ADFDB11E46D26F360B /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADF983B01CD5F85500AA0399 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				ADF983B11CD5F85500AA0399 /* RxTableViewController.swift */,
+				ADF983B21CD5F85500AA0399 /* TableViewCell.swift */,
+				ADF983B31CD5F85500AA0399 /* User.swift */,
+				ADF983B41CD5F85500AA0399 /* ViewModel.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1450,6 +1470,7 @@
 				04E9DE2C1CBB9DBA00AF44FF /* BaseVM.swift in Sources */,
 				04E9DE231CBB9DBA00AF44FF /* BaseViewController.swift in Sources */,
 				04E9DD441CBB9DBA00AF44FF /* MyCustomButton.swift in Sources */,
+				ADF983B51CD5F85500AA0399 /* RxTableViewController.swift in Sources */,
 				04E9DE1D1CBB9DBA00AF44FF /* HotViewController.swift in Sources */,
 				0496BC731CC8666200E63EF4 /* LoginViewController.swift in Sources */,
 				04E9DE151CBB9DBA00AF44FF /* HttpGetBallDynamicHot.swift in Sources */,
@@ -1457,13 +1478,16 @@
 				04E9DE191CBB9DBA00AF44FF /* BallDynamicViewController.swift in Sources */,
 				04E9DE141CBB9DBA00AF44FF /* HotModel.swift in Sources */,
 				04E9DE221CBB9DBA00AF44FF /* MyWebViewController.swift in Sources */,
+				ADF983B61CD5F85500AA0399 /* TableViewCell.swift in Sources */,
 				04E9DE261CBB9DBA00AF44FF /* LeagueMyselfViewController.swift in Sources */,
+				ADF983B71CD5F85500AA0399 /* User.swift in Sources */,
 				04E9DE181CBB9DBA00AF44FF /* HttpPutRequest.swift in Sources */,
 				04E9DE241CBB9DBA00AF44FF /* DateCompetitionViewController.swift in Sources */,
 				04E9DC171CBB8A0100AF44FF /* ViewController.swift in Sources */,
 				04E9DE271CBB9DBA00AF44FF /* LeagueOutSchoolViewController.swift in Sources */,
 				04E9DE201CBB9DBA00AF44FF /* NewsViewController.swift in Sources */,
 				045E3AAE1CC8C62E0007FA6B /* CommonState.swift in Sources */,
+				ADF983B81CD5F85500AA0399 /* ViewModel.swift in Sources */,
 				04E9DD431CBB9DBA00AF44FF /* Common.swift in Sources */,
 				04E9DC151CBB8A0100AF44FF /* AppDelegate.swift in Sources */,
 				04E9DE211CBB9DBA00AF44FF /* HotTableViewCell.swift in Sources */,
