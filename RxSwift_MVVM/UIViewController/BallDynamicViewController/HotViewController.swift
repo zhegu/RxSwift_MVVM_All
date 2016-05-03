@@ -26,7 +26,7 @@ class HotViewController: BaseViewController,UITableViewDelegate {
     
     let myImage:UIImage? = UIImage(named: "照片")
 
-   
+    var test = Variable<Bool>(false)
     //MARK: - override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class HotViewController: BaseViewController,UITableViewDelegate {
         view.backgroundColor = UIColor(white: 1, alpha: 1)
         myTableView.rowHeight = Swift_Height_Cell_ListAndHistory
         myTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+//        myTableView.allowsMultipleSelection = true;
         let reloadDataSource = RxTableViewSectionedReloadDataSource<SectionModel<String,HotModel>>()
         myTableView.rx_setDelegate(self)
         .addDisposableTo(disposeBag)
@@ -73,13 +74,35 @@ class HotViewController: BaseViewController,UITableViewDelegate {
                 }
             })
             
-            
-            
             return cell
         }
         
         hotVM.getHotModels().bindTo(myTableView.rx_itemsWithDataSource(reloadDataSource))
         .addDisposableTo(disposeBag)
+        
+        reloadDataSource.titleForHeaderInSection = {(section,str) in
+            print(section)
+            print(str)
+            return section.sectionAtIndex(str).model
+        }
+        
+        reloadDataSource.titleForFooterInSection = {(section,str) in
+            print(section)
+            print(str)
+            return section.sectionAtIndex(str).model
+        }
+        
+        myTableView
+            .rx_modelSelected(HotModel)
+            .subscribe { (event) in
+                print(event.element)
+                if let hot = event.element {
+                    let webVC:MyWebViewController = MyWebViewController(str: hot.image_content)
+                    self.navigationController?.pushViewController(webVC, animated: true)
+                }
+               
+            }
+            .addDisposableTo(disposeBag)
 
     }
     
@@ -88,16 +111,35 @@ class HotViewController: BaseViewController,UITableViewDelegate {
         //设置下拉刷新，上拉加载
         myTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:#selector(HotViewController.loadNewData))
         myTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(HotViewController.loadMoreData))
-        hotVM.refreshTag.subscribeNext { [unowned self](endRefresh) in
-            if endRefresh == true {
-                if self.myTableView.mj_header.isRefreshing() {
-                    self.myTableView.mj_header.endRefreshing()
+        
+        let leftObservesRight = hotVM.refreshTag.asObservable()
+//            .bindTo(test)
+            
+//            .distinctUntilChanged()
+            .bindNext({ (endRefresh) in
+                if endRefresh == true {
+                    if self.myTableView.mj_header.isRefreshing() {
+                        self.myTableView.mj_header.endRefreshing()
+                    }
+                    if self.myTableView.mj_footer.isRefreshing() {
+                        self.myTableView.mj_footer.endRefreshing()
+                    }
                 }
-                if self.myTableView.mj_footer.isRefreshing() {
-                    self.myTableView.mj_footer.endRefreshing()
-                }
-            }
-        }.addDisposableTo(disposeBag)
+            })
+            .addDisposableTo(disposeBag)
+        
+
+        
+//        hotVM.refreshTag.subscribeNext { [unowned self](endRefresh) in
+//            if endRefresh == true {
+//                if self.myTableView.mj_header.isRefreshing() {
+//                    self.myTableView.mj_header.endRefreshing()
+//                }
+//                if self.myTableView.mj_footer.isRefreshing() {
+//                    self.myTableView.mj_footer.endRefreshing()
+//                }
+//            }
+//        }.addDisposableTo(disposeBag)
         
         //        myTableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: "loadMoreData")
        

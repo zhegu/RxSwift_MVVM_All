@@ -31,6 +31,7 @@ class MyWebViewController: UIViewController {
         myStr = str ?? ""
         
         webView  =  UIWebView.init(frame: CGRect(x: 0, y: 0, width: SCR_W, height: SCR_H))
+        webView.paginationMode = .LeftToRight
         super.init(nibName:nil, bundle:nil)
     }
 

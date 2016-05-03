@@ -28,10 +28,10 @@ class HotVM: BaseVM {
     var obs = PublishSubject<[SectionModel<String, HotModel>]>()
     var section:[SectionModel<String, HotModel>]?
     
-    var refreshTag = PublishSubject<Bool>()
+//    var refreshTag = PublishSubject<Bool>()
+    var refreshTag = Variable<Bool>(false)
     
     override init() {
-
         super.init()
     }
     
@@ -101,16 +101,17 @@ class HotVM: BaseVM {
         
     }
     
-    func getRefreshTag() -> Observable<Bool> {
-        return refreshTag
-    }
+//    func getRefreshTag() -> Observable<Bool> {
+//        return refreshTag
+//    }
     
     func refreshData() -> Void {
-        section = [SectionModel(model: "", items: self.modelArray)]
+        section = [SectionModel(model: "section_1", items: self.modelArray)]
         obs.onNext(section!)
     }
     
     func stopRefreshAnimation() -> Void {
-        refreshTag.onNext(true)
+        refreshTag.value = true
+//        refreshTag.onNext(true)
     }
 }
